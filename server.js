@@ -1,18 +1,26 @@
 const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const mongoose = require('mongoose')
+
+
+dotenv.config();
+
+
+
+connectDB();
 
 const app = express();
 
-const PORT = 5000;
+app.use(express.json());
 
+const PORT = process.env.PORT || 5000;
+const todoRoutes = require("./routes/todoRoutes");
+app.use("/api/todos", todoRoutes);
 app.get("/", (req, res) => {
-    res.send("Helloooooo Node.js");
+    res.send("API is running...");
 });
-
-app.get("/about", (req, res) => {
-    res.send("About Page");
-});
-
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
