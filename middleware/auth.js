@@ -23,7 +23,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  console.log("AUTH HEADER:", authHeader); // 👈 برای debug
+  // console.log("AUTH HEADER:", authHeader); // 👈 برای debug
 
   if (!authHeader) {
     return res.status(401).json({ message: "No token provided" });
